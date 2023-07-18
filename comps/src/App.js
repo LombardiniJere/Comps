@@ -1,39 +1,22 @@
-import Buttons from "./components/Buttons/Buttons";
+import { useState } from "react";
+import Dropdown from "./components/Dropdown";
 
-import { GiAbdominalArmor, Gi3DHammer, GiBackPain, GiBattleAxe, GiBiceps } from "react-icons/gi";
 
 function App() {
+  const [ selection, setSelection ] = useState(null);
 
-  const handleOnClick = () => {
-    console.log('Hello');
+  const options = [
+    {id: 1, label: 'Red', value: 'red'},
+    {id: 2, label: 'Green', value:'green'},
+    {id: 3, label: 'Blue', value: 'blue'}
+  ]
+
+  // recibimos la nueva selection (option) y actualizamos nuestro "Piece of State" 
+  const handleSelect = (option) => {
+    setSelection(option)
   }
 
-  return (
-    <div className="App">
-      <Buttons onClick={ handleOnClick } primary rounded> 
-        < GiBiceps />
-        Primary !
-      </Buttons>
-      <Buttons secondary> 
-        < GiBattleAxe />
-        Secondary !
-      </Buttons>
-      <Buttons success>
-        < Gi3DHammer />
-        Success !
-      </Buttons>
-      <Buttons danger> 
-        < GiBackPain />
-        Danger !
-      </Buttons>
-      <Buttons warning>
-        < GiAbdominalArmor />
-        Warning !
-      </Buttons>
-      <Buttons rounded> Rounded !</Buttons>
-      <Buttons outline> Outline !</Buttons>
-    </div>
-  );
-}
+  return <Dropdown onSelect={handleSelect} options={ options } selection={selection}/>
+};
 
 export default App;
