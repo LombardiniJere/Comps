@@ -1,22 +1,34 @@
-import { useState } from "react";
-import Dropdown from "./components/Dropdown";
+import Sidebar from "./components/Sidebar";
+import Route from "./components/Route";
+import DropdownPage from "./components/pages/DropdownPage"
+import AccordionPage from "./components/pages/AccordionPage"
+import ButtonPage from "./components/pages/ButtonPage";
+import ModalPage from "./components/pages/ModalPage";
 
 
 function App() {
-  const [ selection, setSelection ] = useState(null);
+  return (
+  <div className="container mx-auto grid grid-cols-6 gap-4 mt-4">
+    <Sidebar />
+    <div className="col-span-5">
+    <Route path="/">
+        <DropdownPage />
+      </Route>
+      
+      <Route path="/accordion">
+        <AccordionPage />
+      </Route>
 
-  const options = [
-    {id: 1, label: 'Red', value: 'red'},
-    {id: 2, label: 'Green', value:'green'},
-    {id: 3, label: 'Blue', value: 'blue'}
-  ]
+      <Route path="/buttons">
+        <ButtonPage />
+      </Route>
 
-  // recibimos la nueva selection (option) y actualizamos nuestro "Piece of State" 
-  const handleSelect = (option) => {
-    setSelection(option)
-  }
-
-  return <Dropdown onSelect={handleSelect} options={ options } selection={selection}/>
+      <Route path="/modal">
+        <ModalPage />
+      </Route>
+    </div>
+  </div>
+  )
 };
 
 export default App;

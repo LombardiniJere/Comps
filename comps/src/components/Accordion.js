@@ -5,7 +5,6 @@ import { AiFillCaretDown, AiFillCaretLeft } from "react-icons/ai";
 const Accordion = ({ items }) => {
   const [ expandedIndex, setExpandedIndex ] = useState(-1);
 
-
   // el Accordion comienza collpased useState(-1) y cuando onClick se Expanded y
   // cuando onClick nuevamente se Collapsed
   const handleClick = (indexNext) => {
@@ -19,12 +18,9 @@ const Accordion = ({ items }) => {
   const renderedItems = items.map(( item, index ) => {
     const isExpanded = index === expandedIndex;
 
-    
     // isExpanded es true devolvemos lo que continua despues de ? < AiFillCaretDown /> 
     // isExpanded es false devolvemos lo que continua despues de : < AiFillCaretLeft /> 
     const icon = <span className='text-2xl'>{isExpanded ? < AiFillCaretDown /> : < AiFillCaretLeft />}</span>
-
-
 
     // isExpanded && <div>{ item.content }</div> ---> if isExpanded es true && item.content true ('&&' shows first truthy value)
     return (
