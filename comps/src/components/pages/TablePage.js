@@ -1,4 +1,5 @@
-import Table from "../Table";
+import SortedTable from "../SortedTable";
+
 
 const TablePage = () => {
   const data = [
@@ -11,13 +12,15 @@ const TablePage = () => {
   const config = [
     { label: 'Fruit Name',
       render: (fruit) => fruit.name,
+      sortValue: (fruit) => fruit.name,
     },
     { label: 'Color',
-    render: (fruit) => <div className={`p-3 m-2 ${fruit.color}`} />,
+      render: (fruit) => <div className={`p-3 m-2 ${fruit.color}`} />,
     },
     { label: 'Score',
-    render: (fruit) => fruit.score,
-    }
+      render: (fruit) => fruit.score,
+      sortValue: (fruit) => fruit.score,
+    },
   ];
 
   const keyFn = (fruit) => {
@@ -26,7 +29,7 @@ const TablePage = () => {
 
   return (
     <div>
-      < Table data={data} config={config} keyFn={keyFn} />
+      <SortedTable data={data} config={config} keyFn={keyFn} />
     </div>
   )
 }

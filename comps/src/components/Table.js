@@ -1,8 +1,15 @@
+import { Fragment } from "react"; 
+// se utiliza cuando necesitamos un componente pequeño el cual esta permitido 
+// ya que dos componentes dentro de un componente no se puede crear, 
+// en este caso para agregar una key-prop en renderedHeaders.
+
 
 function Table({ data, config, keyFn }) {
 
-
-  const renderedColumn = config.map((column) => {
+  const renderedHeaders = config.map((column) => {
+    if (column.header) {
+      return <Fragment key={column.label}>{column.header()}</Fragment>; 
+    }
     return (
       <th key={column.label}> {column.label} </th>
     )
@@ -28,7 +35,7 @@ function Table({ data, config, keyFn }) {
     <table className="table-auto border-spacing-2">
       <thead>
         <tr className="border-b-2">
-          {renderedColumn}
+          {renderedHeaders}
         </tr>
       </thead>
       <tbody>{renderedRows}</tbody>
