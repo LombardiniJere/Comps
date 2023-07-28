@@ -1,5 +1,4 @@
 import Buttons from "../Buttons/Buttons";
-
 import { GiAbdominalArmor, Gi3DHammer, GiBackPain, GiBattleAxe, GiBiceps } from "react-icons/gi";
 
 function ButtonPage() {

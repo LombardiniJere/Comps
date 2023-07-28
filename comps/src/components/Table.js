@@ -1,18 +1,15 @@
-import { Fragment } from "react"; 
+import { Fragment } from 'react';
+
 // se utiliza cuando necesitamos un componente pequeño el cual esta permitido 
 // ya que dos componentes dentro de un componente no se puede crear, 
 // en este caso para agregar una key-prop en renderedHeaders.
-
-
 function Table({ data, config, keyFn }) {
-
   const renderedHeaders = config.map((column) => {
     if (column.header) {
-      return <Fragment key={column.label}>{column.header()}</Fragment>; 
+      return <Fragment key={column.label}>{column.header()}</Fragment>;
     }
-    return (
-      <th key={column.label}> {column.label} </th>
-    )
+
+    return <th key={column.label}>{column.label}</th>;
   });
 
   const renderedRows = data.map((rowData) => {
@@ -21,7 +18,7 @@ function Table({ data, config, keyFn }) {
         <td className="p-2" key={column.label}>
           {column.render(rowData)}
         </td>
-      )
+      );
     });
 
     return (
@@ -29,18 +26,16 @@ function Table({ data, config, keyFn }) {
         {renderedCells}
       </tr>
     );
-  })
+  });
 
   return (
     <table className="table-auto border-spacing-2">
       <thead>
-        <tr className="border-b-2">
-          {renderedHeaders}
-        </tr>
+        <tr className="border-b-2">{renderedHeaders}</tr>
       </thead>
       <tbody>{renderedRows}</tbody>
     </table>
-  )
+  );
 }
 
-export default Table
+export default Table;
