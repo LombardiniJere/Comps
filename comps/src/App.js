@@ -5,6 +5,7 @@ import AccordionPage from "./components/pages/AccordionPage"
 import ButtonPage from "./components/pages/ButtonPage";
 import ModalPage from "./components/pages/ModalPage";
 import TablePage from "./components/pages/TablePage";
+import CounterPage from "./components/pages/CounterPage";
 
 
 function App() {
@@ -30,6 +31,10 @@ function App() {
 
       <Route path="/table">
         <TablePage />
+      </Route>
+
+      <Route path="/counter">
+        <CounterPage initialCount={5} />
       </Route>
       
     </div>

@@ -1,6 +1,5 @@
 import Accordion from "../Accordion";
 
-
 function AccordionPage() {
   const items = [
     {
