@@ -3,35 +3,38 @@ import Buttons from "../Buttons/Buttons";
 import Panel from '../Panel';
 import { useReducer } from 'react';
 
-const INCREMENT_COUNT = 'increment-count';
-const DICREMENT_COUNT = 'dicrement-count';
-const SET_VALUE_TO_ADD = 'change-value-to-add';
+const INCREMENT_COUNT = 'increment_count';
+const DICREMENT_COUNT = 'dicrement_count';
+const SET_VALUE_TO_ADD = 'change_value_to_add';
+const ADD_VALUE_TO_COUNT = 'add_value_to_count';
 
 const reducer = (state, action) => {
-  if (action.type === INCREMENT_COUNT) {
-    return {
-      ...state,
-      count: state.count + 1,
-    };
-  }
-
-  if (action.type === DICREMENT_COUNT) {
-    return {
-      ...state,
-      count: state.count - 1,
-    };
-  }
-  
-  if (action.type === SET_VALUE_TO_ADD) {
-    return {
-      ...state,
-      valueToAdd: action.payload,
-    };
-  }
-
-  return state;
-};
-
+  switch (action.type) {
+    case INCREMENT_COUNT:
+      return {
+        ...state,
+        count: state.count + 1,
+      }
+    case DICREMENT_COUNT:
+      return {
+        ...state,
+        count: state.count - 1,
+      }
+    case ADD_VALUE_TO_COUNT:
+      return {
+        ...state,
+        count: state.count + state.valueToAdd,
+        valueToAdd: 0,
+      }
+    case SET_VALUE_TO_ADD:
+      return {
+        ...state,
+        valueToAdd: action.payload,
+      }
+    default:
+      return state;
+  };
+}
 
 function CounterPage ({ initialCount }) {
   const [ state, dispatch ] = useReducer(reducer, {
@@ -50,12 +53,10 @@ function CounterPage ({ initialCount }) {
     dispatch({
       type: DICREMENT_COUNT
     });
-    // setCount(count - 1);
   }
 
   const handleChange = (event) => {
     const value = parseInt(event.target.value) || 0; /* if dont get a value number we asign value 0 */
-    
     dispatch({
       type: SET_VALUE_TO_ADD,
       payload: value,
@@ -64,9 +65,9 @@ function CounterPage ({ initialCount }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    
-    // setCount(count + valueToAdd );
-    // setValueToAdd(0); /** after setCount is trigger, setValueToAdd input is set to 0 cleanSpace */
+    dispatch({
+      type: ADD_VALUE_TO_COUNT
+    });
   }
 
   return (
